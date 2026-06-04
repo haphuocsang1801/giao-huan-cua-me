@@ -2,8 +2,8 @@ import { useRef, useEffect, useCallback } from 'react'
 import { TEACHINGS } from '../data/teachings'
 
 const N = TEACHINGS.length
-const LOTS = 9
-const SPREAD = 56
+const LOTS = N          // one card per teaching
+const SPREAD = 84       // wider spread to fit 13 cards clearly
 
 export default function LotsWidget({ active, onReveal, closeKey }) {
   const fanRef = useRef(null)
@@ -49,7 +49,7 @@ export default function LotsWidget({ active, onReveal, closeKey }) {
   return (
     <section className={`widget${active ? ' on' : ''}`}>
       <div className="fan" ref={fanRef} />
-      <p className="hint">Thành tâm rút một lá thăm để nhận giáo huấn của Mẹ</p>
+      <p className="hint">rút một lá thăm để nhận giáo huấn của Mẹ</p>
     </section>
   )
 }
