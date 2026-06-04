@@ -275,7 +275,8 @@ body {
 .fan {
   position: relative;
   width: min(94vw, 440px);
-  height: clamp(210px, 46vw, 270px);
+  height: clamp(220px, 48vw, 280px);
+  margin-bottom: 54px; /* clearance for cards that overflow downward when rotated */
 }
 .lot {
   position: absolute;
