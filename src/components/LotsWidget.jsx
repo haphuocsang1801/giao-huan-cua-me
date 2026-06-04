@@ -3,7 +3,6 @@ import { TEACHINGS } from '../data/teachings'
 
 const N = TEACHINGS.length
 const LOTS = N          // one card per teaching
-const SPREAD = 84       // wider spread to fit 13 cards clearly
 
 export default function LotsWidget({ active, onReveal, closeKey }) {
   const fanRef = useRef(null)
@@ -17,7 +16,8 @@ export default function LotsWidget({ active, onReveal, closeKey }) {
       if (c !== card) c.classList.add('dim')
     })
     card.classList.add('picked')
-    card.style.transform = 'translateY(-80px) scale(1.12)'
+    const baseX = parseFloat(card.dataset.baseX) || 0
+    card.style.transform = `translateX(${baseX}px) translateY(-80px) scale(1.12)`
     setTimeout(() => onReveal(i), 620)
   }, [onReveal])
 
@@ -26,13 +26,16 @@ export default function LotsWidget({ active, onReveal, closeKey }) {
     if (!fan) return
     fan.innerHTML = ''
     busyRef.current = false
+    const W = fan.offsetWidth || 460
+    const cardW = W <= 430 ? 66 : 80
+    const step = (W - cardW) / (LOTS - 1)
+    const startX = -(W - cardW) / 2
     for (let k = 0; k < LOTS; k++) {
-      const t = k / (LOTS - 1)
-      const ang = -SPREAD / 2 + SPREAD * t
-      const lift = -Math.cos((t - 0.5) * Math.PI) * 18
+      const x = startX + k * step
       const card = document.createElement('div')
       card.className = 'lot'
-      card.style.transform = `rotate(${ang}deg) translateY(${lift}px)`
+      card.dataset.baseX = x
+      card.style.transform = `translateX(${x}px)`
       card.addEventListener('click', () => pickLot(card))
       fan.appendChild(card)
     }
@@ -49,7 +52,7 @@ export default function LotsWidget({ active, onReveal, closeKey }) {
   return (
     <section className={`widget${active ? ' on' : ''}`}>
       <div className="fan" ref={fanRef} />
-      <p className="hint">rút một lá thăm để nhận giáo huấn của Mẹ</p>
+      <p className="hint">Rút một lá thăm để nhận giáo huấn của Mẹ</p>
     </section>
   )
 }
