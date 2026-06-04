@@ -8,6 +8,17 @@ const CONIC = Array.from({ length: N }, (_, i) =>
   `${WHEEL_COLORS[i % WHEEL_COLORS.length]} ${i * SEG}deg ${(i + 1) * SEG}deg`
 ).join(',')
 
+// Màu đậm bổ trợ cho từng màu nền pastel, xen kẽ tạo cảm giác sống động
+const LABEL_COLORS = ['#ad1457', '#2e7d32', '#e65100', '#00695c', '#6a1b9a']
+// Kích thước luân phiên: nhỏ – lớn – vừa để tạo nhịp điệu
+const LABEL_SIZES = ['clamp(13px,3vw,16px)', 'clamp(18px,4.2vw,23px)', 'clamp(15px,3.6vw,19px)']
+const LABEL_STYLES = Array.from({ length: N }, (_, i) => ({
+  color: LABEL_COLORS[i % LABEL_COLORS.length],
+  fontSize: LABEL_SIZES[i % LABEL_SIZES.length],
+  textShadow: '0 1px 3px rgba(255,255,255,0.7)',
+  fontStyle: i % 3 === 1 ? 'italic' : 'normal',
+}))
+
 export default function WheelWidget({ active, onReveal, closeKey, triggerKey }) {
   const wheelRef = useRef(null)
   const rotationRef = useRef(0)
@@ -84,7 +95,7 @@ export default function WheelWidget({ active, onReveal, closeKey, triggerKey }) 
           style={{ background: `conic-gradient(${CONIC})` }}
         >
           {Array.from({ length: N }, (_, i) => (
-            <span key={i} className="lbl">{i + 1}</span>
+            <span key={i} className="lbl" style={LABEL_STYLES[i]}>{i + 1}</span>
           ))}
         </div>
         <button className="hub" onClick={doSpin} disabled={spinning}>QUAY</button>

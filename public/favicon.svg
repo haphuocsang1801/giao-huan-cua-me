@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- nền tròn hồng pastel -->
+  <circle cx="16" cy="16" r="16" fill="#fbe4ef"/>
+  <!-- trái tim hồng đậm -->
+  <path d="M16 23.5 C15.6 23.2 6.5 17.4 6.5 11.5 C6.5 8.4 9 6 12 6 C13.7 6 15.2 6.9 16 8.2 C16.8 6.9 18.3 6 20 6 C23 6 25.5 8.4 25.5 11.5 C25.5 17.4 16.4 23.2 16 23.5Z" fill="#ad1457"/>
+  <!-- điểm sáng nhỏ trên tim -->
+  <ellipse cx="12.5" cy="11" rx="2" ry="1.3" fill="#fff" opacity="0.35" transform="rotate(-20 12.5 11)"/>
+  <!-- cánh hoa nhỏ ở trên -->
+  <circle cx="16" cy="5" r="1.2" fill="#e91e8c" opacity="0.5"/>
+  <circle cx="19.5" cy="5.8" r="0.9" fill="#81c784" opacity="0.6"/>
+  <circle cx="12.5" cy="5.8" r="0.9" fill="#81c784" opacity="0.6"/>
+</svg>
