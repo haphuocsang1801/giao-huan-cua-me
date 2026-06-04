@@ -73,7 +73,7 @@ export default function ResultModal({ index, onClose, onAgain }) {
 
         <div className="m-rule" />
         <div className="m-sign">
-          Trao cho con với cả tấm lòng của Mẹ <span className="h">&#10084;</span>
+          Cảm tạ Cha Mẹ <span className="h">&#10084;</span>
         </div>
 
         <div className="m-actions">

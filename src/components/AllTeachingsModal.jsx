@@ -41,7 +41,7 @@ async function captureAndSave() {
     </div>
 
     <div style="text-align:center;margin-top:32px;font-family:'Playfair Display',serif;font-style:italic;font-size:14.5px;color:#c75f8f;">
-      Trao cho con với cả tấm lòng của Mẹ ♥
+      Cảm tạ Cha Mẹ ♥
     </div>
   `
 
