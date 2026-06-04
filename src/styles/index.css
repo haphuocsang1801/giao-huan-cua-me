@@ -603,20 +603,34 @@ body {
 
 /* --- VIEW ALL BUTTON --- */
 .view-all-btn {
-  margin-top: 26px;
-  background: none;
-  border: none;
+  margin-top: 28px;
+  background: linear-gradient(135deg, #f9d0e6 0%, #fbe6b0 100%);
+  border: 1.5px solid rgba(207,110,152,.45);
+  border-radius: 999px;
   cursor: pointer;
   font-family: "Playfair Display", serif;
   font-style: italic;
-  font-size: 14px;
-  color: var(--ink-soft);
-  letter-spacing: .02em;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ad1457;
+  letter-spacing: .04em;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  transition: color .2s;
-  padding: 4px 8px;
+  gap: 8px;
+  padding: 10px 22px;
+  box-shadow: 0 4px 14px -4px rgba(173,20,87,.22), 0 1px 4px rgba(173,20,87,.10);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
 }
-.view-all-btn:hover { color: var(--pink-deep); }
-.view-all-btn .dot { color: var(--green-soft); font-style: normal; }
+.view-all-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 22px -4px rgba(173,20,87,.32), 0 2px 8px rgba(173,20,87,.14);
+  background: linear-gradient(135deg, #f7c5df 0%, #fddfa0 100%);
+}
+.view-all-btn:active { transform: scale(.98); }
+.view-all-btn .dot {
+  color: #2e7d32;
+  font-style: normal;
+  font-size: 13px;
+  transition: transform .3s ease;
+}
+.view-all-btn:hover .dot { transform: rotate(90deg); }
