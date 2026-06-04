@@ -17,7 +17,7 @@ export default function LotsWidget({ active, onReveal, closeKey }) {
       if (c !== card) c.classList.add('dim')
     })
     card.classList.add('picked')
-    card.style.transform = 'translateY(-96px) scale(1.12)'
+    card.style.transform = 'translateY(-80px) scale(1.12)'
     setTimeout(() => onReveal(i), 620)
   }, [onReveal])
 

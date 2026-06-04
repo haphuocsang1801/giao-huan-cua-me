@@ -274,16 +274,16 @@ body {
 /* --- LOTS (card fan) --- */
 .fan {
   position: relative;
-  width: min(94vw, 440px);
-  height: clamp(220px, 48vw, 280px);
-  margin-bottom: 54px; /* clearance for cards that overflow downward when rotated */
+  width: min(94vw, 460px);
+  height: clamp(170px, 38vw, 220px);
+  margin-bottom: 58px; /* clearance for cards that overflow downward when rotated */
 }
 .lot {
   position: absolute;
   bottom: 6px; left: 50%;
-  width: 76px; height: 114px;
-  margin-left: -38px;
-  border-radius: 13px;
+  width: 124px; height: 80px;
+  margin-left: -62px;
+  border-radius: 14px;
   cursor: pointer;
   transform-origin: 50% 150%;
   border: 1px solid rgba(255,255,255,.85);
@@ -293,7 +293,12 @@ body {
   place-items: center;
   transition: transform .4s cubic-bezier(.2, .7, .3, 1.1), box-shadow .3s, filter .3s, opacity .3s;
 }
-.lot::after { content: "\2767"; font-size: 27px; color: var(--pink); opacity: .65; }
+.lot::after { content: "\2767"; font-size: 24px; color: var(--pink); opacity: .65; }
+
+@media (max-width: 430px) {
+  .lot { width: 102px; height: 66px; margin-left: -51px; }
+  .lot::after { font-size: 20px; }
+}
 .lot:hover { filter: brightness(1.04); }
 .lot.dim { filter: grayscale(.25) brightness(.97); opacity: .5; }
 .lot.picked { z-index: 9; box-shadow: 0 30px 44px -16px rgba(199,95,143,.6); }
