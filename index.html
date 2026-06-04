@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Giáo Huấn của Mẹ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,800&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --green-deep: #5d7d4f;
+    --green: #7ba05b;
+    --green-soft: #a9c98c;
+    --pink: #d97fa6;
+    --pink-deep: #c75f8f;
+    --gold: #cba24e;
+    --ink: #4c5142;
+    --ink-soft: #6c7361;
+    --cream: #fbf7ed;
+    --card: rgba(255, 255, 255, .66);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+
+  body {
+    font-family: "Be Vietnam Pro", sans-serif;
+    color: var(--ink);
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(26px, 4vw, 52px) clamp(16px, 4vw, 48px);
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background:
+      radial-gradient(120% 80% at 50% -10%, #eaf5f4 0%, rgba(234,245,244,0) 55%),
+      radial-gradient(140% 100% at 50% 120%, #e4efd4 0%, rgba(228,239,212,0) 50%),
+      linear-gradient(180deg, #e6f0ee 0%, #f6f2e6 46%, #eaf2dd 100%);
+  }
+
+  /* --- ambient glow blobs --- */
+  .glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: .5;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .g1 { top: -120px; left: -100px; width: 380px; height: 380px; background: radial-gradient(circle, #fdf3c4 0%, rgba(253,243,196,0) 70%); }
+  .g2 { top: -80px;  right: -120px; width: 340px; height: 340px; background: radial-gradient(circle, #cfe9e6 0%, rgba(207,233,230,0) 70%); }
+  .g3 { bottom: -140px; left: -80px; width: 420px; height: 420px; background: radial-gradient(circle, #d7ecc0 0%, rgba(215,236,192,0) 70%); }
+  .g4 { bottom: -120px; right: -100px; width: 360px; height: 360px; background: radial-gradient(circle, #fbe0ec 0%, rgba(251,224,236,0) 70%); }
+
+  /* --- corner sprigs --- */
+  .sprig {
+    position: fixed;
+    z-index: 1;
+    pointer-events: none;
+    width: clamp(110px, 16vw, 210px);
+    opacity: .92;
+  }
+  .sprig.tl { top: -8px; left: -6px; }
+  .sprig.tr { top: -8px; right: -6px; transform: scaleX(-1); }
+  .sprig.bl { bottom: -8px; left: -6px; transform: scaleY(-1); }
+  .sprig.br { bottom: -8px; right: -6px; transform: scale(-1, -1); }
+
+  /* --- falling petals --- */
+  .petals { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+  .petal {
+    position: absolute;
+    top: -8%;
+    border-radius: 80% 0 80% 0;
+    opacity: .7;
+    animation: fall linear infinite;
+    will-change: transform;
+  }
+  @keyframes fall {
+    0%   { transform: translateY(-10vh) translateX(0) rotate(0); opacity: 0; }
+    8%   { opacity: .75; }
+    100% { transform: translateY(112vh) translateX(var(--drift)) rotate(540deg); opacity: .12; }
+  }
+
+  /* --- main stage --- */
+  .stage {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 620px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* --- masthead --- */
+  .masthead {
+    position: relative;
+    text-align: center;
+    margin-bottom: clamp(14px, 2.6vw, 26px);
+  }
+  .ghost {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -54%);
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: clamp(96px, 20vw, 170px);
+    line-height: .8;
+    color: #fff;
+    opacity: .45;
+    z-index: -1;
+    pointer-events: none;
+    letter-spacing: -.04em;
+    text-shadow: 0 2px 30px rgba(123,160,91,.18);
+  }
+  .kicker {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: clamp(24px, 5vw, 40px);
+    letter-spacing: .06em;
+    color: var(--green-deep);
+    text-shadow: 0 1px 0 rgba(255,255,255,.7);
+    white-space: nowrap;
+  }
+  .cua {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(15px, 3vw, 21px);
+    color: var(--ink-soft);
+    margin: -2px 0 -6px;
+  }
+  .me {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 800;
+    font-size: clamp(44px, 9.5vw, 76px);
+    line-height: .95;
+    background: linear-gradient(180deg, #e08bb1 0%, #c75f8f 70%, #b14e80 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 10px rgba(199,95,143,.22));
+  }
+  .me .heart {
+    -webkit-text-fill-color: initial;
+    color: var(--pink);
+    font-size: .3em;
+    vertical-align: middle;
+    margin: 0 .12em;
+    filter: none;
+  }
+
+  /* --- method tabs --- */
+  .methods {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: clamp(20px, 3.4vw, 34px);
+  }
+  .method {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,.7);
+    background: rgba(255,255,255,.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 11px 17px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink-soft);
+    transition: transform .2s, color .2s, background .2s, box-shadow .25s, border-color .2s;
+    box-shadow: 0 6px 16px -10px rgba(93,125,79,.5);
+  }
+  .method svg { width: 19px; height: 19px; color: var(--green); transition: color .2s; }
+  .method:hover { transform: translateY(-2px); color: var(--ink); }
+  .method.on {
+    background: linear-gradient(135deg, #fbe4ef, #eef6df);
+    color: var(--pink-deep);
+    border-color: rgba(207,110,152,.4);
+    box-shadow: 0 10px 22px -10px rgba(199,95,143,.45);
+  }
+  .method.on svg { color: var(--pink-deep); }
+
+  /* --- widget panels --- */
+  /* All widgets live in the same grid cell — switching is pure opacity+transform,
+     no display toggle, no layout reflow. */
+  .widget-stage {
+    display: grid;
+    width: 100%;
+  }
+  .widget-stage > .widget {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity .35s ease, transform .35s ease;
+    will-change: opacity, transform;
+  }
+  .widget-stage > .widget.on {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .hint {
+    margin-top: 20px;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    letter-spacing: .01em;
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* --- WHEEL --- */
+  .wheel-wrap {
+    position: relative;
+    width: clamp(260px, 72vw, 350px);
+    aspect-ratio: 1;
+  }
+  .wheel {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 9px solid #fff;
+    box-shadow: 0 24px 52px -20px rgba(93,125,79,.55), inset 0 0 0 2px rgba(207,110,152,.15);
+    transition: transform 4.7s cubic-bezier(.1, .62, .12, 1);
+  }
+  .wheel .lbl {
+    position: absolute;
+    top: 50%; left: 50%;
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: clamp(15px, 3.6vw, 19px);
+    color: #6a5238;
+  }
+  .wheel-pointer {
+    position: absolute;
+    top: -7px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    width: 0; height: 0;
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-top: 25px solid #cf6e98;
+    filter: drop-shadow(0 4px 5px rgba(199,95,143,.45));
+  }
+  .hub {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    width: clamp(72px, 17vw, 90px);
+    height: clamp(72px, 17vw, 90px);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: radial-gradient(circle at 50% 35%, #fff, #fbeaf1);
+    color: var(--pink-deep);
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: clamp(15px, 3.8vw, 19px);
+    letter-spacing: .04em;
+    box-shadow: 0 10px 24px -8px rgba(199,95,143,.6), inset 0 0 0 4px #fff, 0 0 0 7px rgba(207,110,152,.25);
+    transition: transform .15s;
+  }
+  .hub:hover { transform: translate(-50%, -50%) scale(1.05); }
+  .hub:active { transform: translate(-50%, -50%) scale(.95); }
+  .hub:disabled { cursor: default; opacity: .9; }
+
+  /* --- LOTS (card fan) --- */
+  .fan {
+    position: relative;
+    width: min(94vw, 440px);
+    height: clamp(210px, 46vw, 270px);
+  }
+  .lot {
+    position: absolute;
+    bottom: 6px; left: 50%;
+    width: 76px; height: 114px;
+    margin-left: -38px;
+    border-radius: 13px;
+    cursor: pointer;
+    transform-origin: 50% 150%;
+    border: 1px solid rgba(255,255,255,.85);
+    background: linear-gradient(165deg, #fdeef5 0%, #f3f8e8 100%);
+    box-shadow: 0 12px 24px -13px rgba(93,125,79,.5);
+    display: grid;
+    place-items: center;
+    transition: transform .4s cubic-bezier(.2, .7, .3, 1.1), box-shadow .3s, filter .3s, opacity .3s;
+  }
+  .lot::after { content: "\2767"; font-size: 27px; color: var(--pink); opacity: .65; }
+  .lot:hover { filter: brightness(1.04); }
+  .lot.dim { filter: grayscale(.25) brightness(.97); opacity: .5; }
+  .lot.picked { z-index: 9; box-shadow: 0 30px 44px -16px rgba(199,95,143,.6); }
+  .lot.picked::after { color: var(--pink-deep); opacity: .9; }
+
+  /* --- MYSTERY BOX --- */
+  .giftbox {
+    position: relative;
+    width: 180px; height: 158px;
+    cursor: pointer;
+  }
+  .gb-body {
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 150px; height: 104px;
+    border-radius: 11px;
+    background: linear-gradient(160deg, #f7b9d4, #ec8fb6);
+    box-shadow: 0 20px 38px -16px rgba(199,95,143,.6), inset 0 -8px 16px rgba(176,78,128,.22);
+  }
+  .gb-ribbon {
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 22px; height: 104px;
+    background: #f7dca0;
+    z-index: 2;
+  }
+  .gb-lid {
+    position: absolute;
+    top: 30px; left: 50%;
+    transform: translateX(-50%);
+    width: 168px; height: 42px;
+    border-radius: 10px;
+    background: linear-gradient(160deg, #f9c8df, #ef9cc0);
+    z-index: 3;
+    box-shadow: 0 8px 16px -8px rgba(199,95,143,.5);
+    transition: transform .55s cubic-bezier(.35, -.35, .5, 1.5), opacity .55s;
+  }
+  .gb-bow {
+    position: absolute;
+    top: 12px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    font-size: 30px;
+    color: #e6b94e;
+    filter: drop-shadow(0 2px 3px rgba(176,78,128,.3));
+  }
+  .giftbox.shake { animation: shake .55s ease; }
+  @keyframes shake {
+    0%, 100% { transform: rotate(0); }
+    15%  { transform: rotate(-5deg); }
+    30%  { transform: rotate(5deg); }
+    45%  { transform: rotate(-4deg); }
+    60%  { transform: rotate(4deg); }
+    80%  { transform: rotate(-2deg); }
+  }
+  .giftbox.open .gb-lid {
+    transform: translateX(-50%) translateY(-130px) rotate(-20deg);
+    opacity: 0;
+  }
+  .giftbox.open .gb-bow {
+    transform: translateX(-50%) translateY(-130px) rotate(20deg);
+    opacity: 0;
+    transition: transform .55s, opacity .55s;
+  }
+  .giftbox.open .gb-body { animation: boxpop .5s ease; }
+  @keyframes boxpop {
+    0%   { transform: translateX(-50%) scaleY(1); }
+    40%  { transform: translateX(-50%) scaleY(.9); }
+    100% { transform: translateX(-50%) scaleY(1); }
+  }
+
+  /* --- RESULT MODAL --- */
+  .modal {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    background: rgba(120, 140, 110, .3);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+  }
+  .modal.on { display: flex; animation: fadeIn .3s ease; }
+
+  .modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    background: radial-gradient(120% 90% at 50% 0%, #fff6fa 0%, #ffffff 46%, #f7fbef 100%);
+    border: 1px solid rgba(255,255,255,.85);
+    border-radius: 38px;
+    padding: clamp(32px, 6vw, 50px) clamp(28px, 5.5vw, 46px) clamp(28px, 5vw, 40px);
+    text-align: center;
+    box-shadow: 0 40px 80px -30px rgba(93,125,79,.6), inset 0 1px 0 rgba(255,255,255,.7);
+    animation: pop .55s cubic-bezier(.22, .9, .3, 1.12);
+    overflow: hidden;
+  }
+  /* dashed inner border */
+  .modal-card::before {
+    content: "";
+    position: absolute;
+    inset: 13px;
+    border: 2px dashed rgba(207,110,152,.32);
+    border-radius: 28px;
+    pointer-events: none;
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(.86) translateY(20px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .m-garland { position: relative; font-size: 16px; letter-spacing: .45em; color: var(--green-soft); margin-bottom: 16px; }
+  .m-garland .h { color: var(--pink); }
+
+  .m-eyebrow {
+    position: relative;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+  .m-eyebrow b { font-style: normal; font-weight: 700; color: var(--pink-deep); }
+
+  /* flower badge — animate the container so the number moves with the petals */
+  .m-flower {
+    position: relative;
+    width: 84px; height: 84px;
+    margin: 0 auto 28px;
+    filter: drop-shadow(0 8px 16px rgba(199,95,143,.28));
+    animation: bob 3.4s ease-in-out infinite;
+    transform-origin: 50% 50%;
+  }
+  .m-flower svg { width: 100%; height: 100%; display: block; }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50%       { transform: translateY(-4px) rotate(4deg); }
+  }
+  .m-num {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1;
+    color: #9a6a2e;
+    /* nudge up slightly to sit in the visual center of the gold circle */
+    padding-bottom: 2px;
+  }
+
+  .m-teaching {
+    position: relative;
+    font-size: clamp(19px, 3.6vw, 25px);
+    line-height: 1.62;
+    color: #54513f;
+    text-wrap: pretty;
+    font-weight: 400;
+    /* top padding creates room for the large decorative quote mark */
+    padding: 32px 6px 0;
+  }
+  /* opening quote mark */
+  .m-teaching::before {
+    content: "\201C";
+    position: absolute;
+    top: -4px; left: 50%;
+    transform: translateX(-50%);
+    font-family: "Playfair Display", serif;
+    font-size: 54px;
+    line-height: 1;
+    color: rgba(217,127,166,.34);
+  }
+
+  .m-sign {
+    margin-top: 14px;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--pink-deep);
+  }
+  .m-sign .h { color: var(--pink); font-style: normal; }
+
+  .m-rule {
+    width: 90px; height: 1px;
+    margin: 24px auto 20px;
+    background: linear-gradient(90deg, transparent, var(--green-soft), transparent);
+    position: relative;
+  }
+  .m-rule::after {
+    content: "\2767";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -52%);
+    color: var(--pink);
+    font-size: 16px;
+    background: #fff;
+    padding: 0 8px;
+  }
+
+  .m-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+
+  .btn {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 15.5px;
+    letter-spacing: .01em;
+    padding: 14px 28px;
+    border-radius: 999px;
+    transition: transform .18s, box-shadow .25s, filter .25s;
+    display: inline-flex;
+    align-items: center;
+    gap: .55ch;
+    white-space: nowrap;
+  }
+  .btn svg { width: 17px; height: 17px; }
+
+  .btn-primary {
+    color: #fff;
+    background: linear-gradient(135deg, #e58cb2 0%, #cf6e98 48%, #9db86f 130%);
+    box-shadow: 0 14px 30px -12px rgba(199,95,143,.6), inset 0 1px 0 rgba(255,255,255,.45);
+  }
+  .btn-primary:hover  { transform: translateY(-2px); filter: brightness(1.04); }
+  .btn-primary:active { transform: translateY(0) scale(.97); }
+
+  .btn-ghost { background: rgba(123,160,91,.12); color: var(--green-deep); }
+  .btn-ghost:hover { background: rgba(123,160,91,.2); }
+
+  /* confetti burst */
+  .burst { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }
+  .bp { position: absolute; top: 42%; left: 50%; width: 12px; height: 10px; border-radius: 80% 0 80% 0; opacity: 0; }
+
+  @media (prefers-reduced-motion: reduce) { .petal { display: none; } }
+</style>
+</head>
+<body>
+
+  <!-- ambient glow -->
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="glow g3"></div>
+  <div class="glow g4"></div>
+
+  <!-- corner leaf sprigs -->
+  <svg class="sprig tl" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+    <g stroke="#7c9a64" stroke-width="2.2" stroke-linecap="round">
+      <path d="M2 4 C 48 26 78 58 96 104 M2 4 C 30 44 40 86 44 132"/>
+    </g>
+    <g fill="#a7ca87">
+      <ellipse cx="40"  cy="40"  rx="22" ry="9"   transform="rotate(28 40 40)"/>
+      <ellipse cx="74"  cy="64"  rx="20" ry="8.5" transform="rotate(40 74 64)"/>
+      <ellipse cx="30"  cy="78"  rx="19" ry="8"   transform="rotate(72 30 78)"/>
+      <ellipse cx="96"  cy="98"  rx="18" ry="8"   transform="rotate(50 96 98)"/>
+      <ellipse cx="44"  cy="120" rx="17" ry="7.5" transform="rotate(86 44 120)"/>
+    </g>
+    <g fill="#f4c6da">
+      <circle cx="100" cy="106" r="6.5"/>
+      <circle cx="46"  cy="138" r="6"/>
+    </g>
+    <circle cx="100" cy="106" r="2.6" fill="#cf6e98"/>
+    <circle cx="46"  cy="138" r="2.4" fill="#cf6e98"/>
+  </svg>
+
+  <svg class="sprig tr" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+    <g stroke="#7c9a64" stroke-width="2.2" stroke-linecap="round">
+      <path d="M2 4 C 48 26 78 58 96 104 M2 4 C 30 44 40 86 44 132"/>
+    </g>
+    <g fill="#bcd79e">
+      <ellipse cx="40" cy="40" rx="22" ry="9"   transform="rotate(28 40 40)"/>
+      <ellipse cx="74" cy="64" rx="20" ry="8.5" transform="rotate(40 74 64)"/>
+      <ellipse cx="30" cy="78" rx="19" ry="8"   transform="rotate(72 30 78)"/>
+    </g>
+    <circle cx="100" cy="106" r="6.5" fill="#fbe4b8"/>
+    <circle cx="100" cy="106" r="2.6" fill="#cba24e"/>
+  </svg>
+
+  <svg class="sprig bl" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+    <g stroke="#7c9a64" stroke-width="2.2" stroke-linecap="round">
+      <path d="M2 4 C 48 26 78 58 96 104 M2 4 C 30 44 40 86 44 132"/>
+    </g>
+    <g fill="#a7ca87">
+      <ellipse cx="40" cy="40"  rx="22" ry="9"   transform="rotate(28 40 40)"/>
+      <ellipse cx="74" cy="64"  rx="20" ry="8.5" transform="rotate(40 74 64)"/>
+      <ellipse cx="30" cy="78"  rx="19" ry="8"   transform="rotate(72 30 78)"/>
+      <ellipse cx="96" cy="98"  rx="18" ry="8"   transform="rotate(50 96 98)"/>
+    </g>
+    <circle cx="100" cy="106" r="6.5" fill="#f4c6da"/>
+    <circle cx="100" cy="106" r="2.6" fill="#cf6e98"/>
+  </svg>
+
+  <svg class="sprig br" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+    <g stroke="#7c9a64" stroke-width="2.2" stroke-linecap="round">
+      <path d="M2 4 C 48 26 78 58 96 104 M2 4 C 30 44 40 86 44 132"/>
+    </g>
+    <g fill="#bcd79e">
+      <ellipse cx="40"  cy="40"  rx="22" ry="9"   transform="rotate(28 40 40)"/>
+      <ellipse cx="74"  cy="64"  rx="20" ry="8.5" transform="rotate(40 74 64)"/>
+      <ellipse cx="30"  cy="78"  rx="19" ry="8"   transform="rotate(72 30 78)"/>
+      <ellipse cx="96"  cy="98"  rx="18" ry="8"   transform="rotate(50 96 98)"/>
+      <ellipse cx="44"  cy="120" rx="17" ry="7.5" transform="rotate(86 44 120)"/>
+    </g>
+    <g fill="#f4c6da">
+      <circle cx="100" cy="106" r="6.5"/>
+      <circle cx="46"  cy="138" r="6"/>
+    </g>
+    <circle cx="100" cy="106" r="2.6" fill="#cf6e98"/>
+    <circle cx="46"  cy="138" r="2.4" fill="#cf6e98"/>
+  </svg>
+
+  <!-- falling petals container — filled by JS -->
+  <div class="petals" id="petals"></div>
+
+  <main class="stage">
+
+    <!-- masthead -->
+    <div class="masthead">
+      <div class="ghost" id="ghost">&#10084;</div>
+      <div class="kicker">GIÁO HUẤN</div>
+      <div class="cua">của</div>
+      <div class="me"><span class="heart">&#10084;</span>Mẹ<span class="heart">&#10084;</span></div>
+    </div>
+
+    <!-- method selector tabs -->
+    <nav class="methods" id="methods">
+      <button class="method" data-m="lots">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="8" width="11" height="14" rx="2" transform="rotate(-9 8.5 15)"/>
+          <rect x="10" y="6" width="11" height="14" rx="2" transform="rotate(9 15.5 13)"/>
+        </svg>
+        Rút thăm
+      </button>
+      <button class="method" data-m="box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="9" width="18" height="12" rx="1.5"/>
+          <path d="M3 13h18"/>
+          <path d="M12 9v12"/>
+          <path d="M12 9s-1.2-5-4-5-2 4 4 5z"/>
+          <path d="M12 9s1.2-5 4-5 2 4-4 5z"/>
+        </svg>
+        Đập hộp bí ẩn
+      </button>
+      <button class="method" data-m="wheel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/>
+        </svg>
+        Vòng quay may mắn
+      </button>
+    </nav>
+
+    <div class="widget-stage">
+    <!-- WHEEL widget -->
+    <section class="widget" id="w-wheel">
+      <div class="wheel-wrap">
+        <div class="wheel-pointer"></div>
+        <div class="wheel" id="wheel"></div>
+        <button class="hub" id="hub">QUAY</button>
+      </div>
+      <p class="hint">Chạm nút "QUAY" và để vòng quay chọn giáo huấn cho bạn</p>
+    </section>
+
+    <!-- LOTS widget -->
+    <section class="widget" id="w-lots">
+      <div class="fan" id="fan"></div>
+      <p class="hint">Thành tâm rút một lá thăm để nhận giáo huấn của Mẹ</p>
+    </section>
+
+    <!-- BOX widget -->
+    <section class="widget" id="w-box">
+      <div class="giftbox" id="giftbox">
+        <div class="gb-body"></div>
+        <div class="gb-ribbon"></div>
+        <div class="gb-lid"></div>
+        <div class="gb-bow">&#10047;</div>
+      </div>
+      <p class="hint">Chạm vào hộp quà để mở điều bất ngờ bên trong</p>
+    </section>
+    </div><!-- /.widget-stage -->
+
+  </main>
+
+  <!-- RESULT MODAL (nơi hiển thị riêng) -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mText">
+    <div class="modal-card">
+      <div class="burst" id="burst"></div>
+
+      <!-- decorative heart garland -->
+      <div class="m-garland">
+        <span class="h">&#10084;</span> &#10047; <span class="h">&#10084;</span>
+      </div>
+
+      <div class="m-eyebrow">Giáo huấn của <b>Mẹ</b> · số <b id="mNum">1</b> / 13</div>
+
+      <!-- bobbing daisy badge with number -->
+      <div class="m-flower">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <g>
+            <ellipse cx="50" cy="22" rx="12" ry="20" fill="#f6b3d1"/>
+            <ellipse cx="50" cy="22" rx="12" ry="20" fill="#f6b3d1" transform="rotate(45 50 50)"/>
+            <ellipse cx="50" cy="22" rx="12" ry="20" fill="#f4a6c9" transform="rotate(90 50 50)"/>
+            <ellipse cx="50" cy="22" rx="12" ry="20" fill="#f4a6c9" transform="rotate(135 50 50)"/>
+            <ellipse cx="50" cy="22" rx="12" ry="20" fill="#f6b3d1" transform="rotate(180 50 50)"/>
+            <ellipse cx="50" cy="22" rx="12" ry="20" fill="#f6b3d1" transform="rotate(225 50 50)"/>
+            <ellipse cx="50" cy="22" rx="12" ry="20" fill="#f4a6c9" transform="rotate(270 50 50)"/>
+            <ellipse cx="50" cy="22" rx="12" ry="20" fill="#f4a6c9" transform="rotate(315 50 50)"/>
+          </g>
+          <circle cx="50" cy="50" r="21" fill="#ffe49a" stroke="#fff" stroke-width="2.5"/>
+        </svg>
+        <span class="m-num" id="mBadge">1</span>
+      </div>
+
+      <p class="m-teaching" id="mText"></p>
+
+      <div class="m-rule"></div>
+      <div class="m-sign">Trao cho con với cả tấm lòng của Mẹ <span class="h">&#10084;</span></div>
+
+      <div class="m-actions">
+        <button class="btn btn-primary" id="again">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/>
+            <path d="M21 3v5h-5"/>
+            <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+            <path d="M3 21v-5h5"/>
+          </svg>
+          Rút lần nữa
+        </button>
+        <button class="btn btn-ghost" id="close">Đóng lại</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+'use strict';
+
+/* =====================================================================
+   DATA — 13 teachings of Mẹ
+   ===================================================================== */
+const TEACHINGS = [
+  "Như Đức Chúa Trời luôn luôn ban sự yêu thương, người yêu thương được phước hơn người nhận yêu thương.",
+  "Khi dâng vinh hiển lên Đức Chúa Trời thì sự vinh hiển ấy được trở lại và thuộc về mình.",
+  "Tấm lòng đẹp không chứa sự ghen ghét và luôn đạt được tình yêu thương trọn vẹn.",
+  "Giống như Ápraham được nhận phước lành tốt hơn khi nhường cho người cháu là Lót cái tốt đẹp, chúng ta cũng sẽ nhận phước lành tốt hơn khi nhường cho anh em cái tốt đẹp.",
+  "Lòng hờn dỗi là lòng kiêu ngạo.",
+  "Đừng phàn nàn người khác không làm, hãy chú tâm vào công việc của chính mình một cách trung thành. Làm việc bằng tấm lòng người chủ sẽ không mệt nhọc và luôn được hớn hở trong khi làm việc.",
+  "Đầy bát mãn sinh ra lòng kiêu ngạo. Luôn luôn lấy lòng cảm tạ phụng sự Đức Chúa Trời thì bát mãn và kiêu ngạo sẽ bị biến mất, thay vào đó là lòng khiêm tốn.",
+  "Khi khen anh em thì sự khen trở về mình.",
+  "Giống như biển cả làm cho tinh sạch mọi sự dơ dáy chảy vào mình, tấm lòng rộng lớn như biển cả bao la khoan dung mọi sự lỗi lầm của anh chị em mới thật là tấm lòng đẹp.",
+  "Người nào muốn được Chiên Con dẫn dắt, thì phải trở nên chiên nhỏ hơn Chiên Con.",
+  "Hy sinh là quá trình được đòi hỏi để chúng ta trở thành chén lớn.",
+  "Đức Chúa Trời đến thế gian để hầu việc. Tấm lòng hầu việc lẫn nhau chớ không muốn được hầu việc là tấm lòng Đức Chúa Trời đẹp ý.",
+  "Sở dĩ kiên nhẫn và nhịn nhục gian nan hôm nay là vì đối với tôi có Nước Thiên Đàng."
+];
+const N = TEACHINGS.length;
+const rand = () => Math.floor(Math.random() * N);
+
+/* =====================================================================
+   FALLING PETALS
+   ===================================================================== */
+(function spawnPetals() {
+  const container = document.getElementById('petals');
+  const PETAL_COLORS = ['#f6c9dd','#cbe3a8','#fbe6b0','#d9f0ee','#f0e0f6','#ffffff'];
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    const size = 7 + Math.random() * 9;
+    p.style.cssText = [
+      `left:${Math.random() * 100}%`,
+      `width:${size}px`,
+      `height:${size * 0.75}px`,
+      `background:${PETAL_COLORS[i % PETAL_COLORS.length]}`,
+      `animation-duration:${12 + Math.random() * 14}s`,
+      `animation-delay:${-Math.random() * 16}s`,
+      `--drift:${(Math.random() - 0.5) * 140}px`
+    ].join(';');
+    container.appendChild(p);
+  }
+})();
+
+/* =====================================================================
+   RESULT MODAL
+   ===================================================================== */
+const modal   = document.getElementById('modal');
+const burstEl = document.getElementById('burst');
+const BURST_COLORS = ['#f7cfe0','#fbe3c0','#cbe3a8','#ffffff','#f3d6e6','#bfe0e6'];
+let lastMethod = 'wheel';
+
+function fireBurst() {
+  burstEl.innerHTML = '';
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('span');
+    p.className = 'bp';
+    const ang  = Math.random() * Math.PI * 2;
+    const dist = 80 + Math.random() * 150;
+    const dx   = Math.cos(ang) * dist;
+    const dy   = Math.sin(ang) * dist * 0.7 + 40;
+    const s    = 8 + Math.random() * 10;
+    p.style.width  = s + 'px';
+    p.style.height = (s * 0.8) + 'px';
+    p.style.background = BURST_COLORS[i % BURST_COLORS.length];
+    p.animate([
+      { transform: 'translate(-50%,-50%) scale(.3) rotate(0)',                                                                opacity: 1 },
+      { transform: `translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px)) scale(1) rotate(${Math.random() * 540 - 270}deg)`, opacity: 0 }
+    ], { duration: 1100 + Math.random() * 500, easing: 'cubic-bezier(.18,.7,.3,1)', fill: 'forwards' });
+    burstEl.appendChild(p);
+  }
+}
+
+function reveal(i) {
+  document.getElementById('mNum').textContent   = i + 1;
+  document.getElementById('mBadge').textContent = i + 1;
+  document.getElementById('mText').textContent  = TEACHINGS[i];
+  modal.classList.add('on');
+  fireBurst();
+  try { localStorage.setItem('gh_me_last', i); } catch (e) { /* private browsing */ }
+}
+
+function closeModal() {
+  modal.classList.remove('on');
+  resetWidget(lastMethod);
+}
+
+document.getElementById('close').addEventListener('click', closeModal);
+document.getElementById('again').addEventListener('click', () => {
+  modal.classList.remove('on');
+  resetWidget(lastMethod);
+  triggerMethod(lastMethod);
+});
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+/* =====================================================================
+   METHOD SWITCHING
+   ===================================================================== */
+const widgets = { wheel: 'w-wheel', lots: 'w-lots', box: 'w-box' };
+
+function setMethod(m) {
+  lastMethod = m;
+  document.querySelectorAll('.method').forEach(b => b.classList.toggle('on', b.dataset.m === m));
+  Object.entries(widgets).forEach(([k, id]) => document.getElementById(id).classList.toggle('on', k === m));
+  resetWidget(m);
+  try { localStorage.setItem('gh_me_method', m); } catch (e) { /* */ }
+}
+
+document.querySelectorAll('.method').forEach(b =>
+  b.addEventListener('click', () => { modal.classList.remove('on'); setMethod(b.dataset.m); })
+);
+
+function resetWidget(m) {
+  if (m === 'box')  { giftbox.classList.remove('shake', 'open'); boxBusy = false; }
+  if (m === 'lots') { buildFan(); }
+  if (m === 'wheel') { hub.disabled = false; requestAnimationFrame(layoutWheel); }
+}
+
+function triggerMethod(m) {
+  if (m === 'wheel') spin();
+  else if (m === 'box') openBox();
+  /* lots: user must pick a card */
+}
+
+/* =====================================================================
+   WHEEL
+   ===================================================================== */
+const wheel = document.getElementById('wheel');
+const hub   = document.getElementById('hub');
+const SEG   = 360 / N;
+const WHEEL_COLORS = ['#f6c9dd','#cbe3a8','#fbe6b0','#bfe0e6','#ecd0ec'];
+
+(function buildWheel() {
+  const stops = [];
+  for (let i = 0; i < N; i++) {
+    stops.push(`${WHEEL_COLORS[i % WHEEL_COLORS.length]} ${i * SEG}deg ${(i + 1) * SEG}deg`);
+  }
+  wheel.style.background = `conic-gradient(${stops.join(',')})`;
+
+  for (let i = 0; i < N; i++) {
+    const lbl = document.createElement('span');
+    lbl.className = 'lbl';
+    lbl.textContent = i + 1;
+    wheel.appendChild(lbl);
+  }
+  layoutWheel();
+})();
+
+function layoutWheel() {
+  const R = wheel.clientWidth / 2 * 0.66;
+  wheel.querySelectorAll('.lbl').forEach((lbl, i) => {
+    const mid = i * SEG + SEG / 2;
+    lbl.style.transform = `translate(-50%,-50%) rotate(${mid}deg) translateY(-${R}px)`;
+  });
+}
+window.addEventListener('resize', layoutWheel);
+
+let rotation = 0;
+let spinning  = false;
+
+function spin() {
+  if (spinning) return;
+  spinning = true;
+  hub.disabled = true;
+
+  const target  = rand();
+  const mid     = target * SEG + SEG / 2;
+  const jitter  = (Math.random() * 0.6 - 0.3) * SEG;
+  const desiredMod = ((-mid + jitter) % 360 + 360) % 360;
+  const currentMod = ((rotation % 360) + 360) % 360;
+  let delta = desiredMod - currentMod;
+  if (delta < 0) delta += 360;
+  delta += 360 * 6;
+
+  rotation += delta;
+  wheel.style.transform = `rotate(${rotation}deg)`;
+
+  let finished = false;
+  const finish = () => {
+    if (finished) return;
+    finished = true;
+    wheel.removeEventListener('transitionend', finish);
+    spinning = false;
+    reveal(target);
+  };
+  wheel.addEventListener('transitionend', finish);
+  /* fallback: fires if transitionend is missed (e.g. tab was backgrounded) */
+  setTimeout(finish, 5200);
+}
+
+hub.addEventListener('click', spin);
+
+/* =====================================================================
+   LOTS (card fan)
+   ===================================================================== */
+const fan = document.getElementById('fan');
+const LOTS = 9;
+
+function buildFan() {
+  fan.innerHTML = '';
+  lotBusy = false;
+  const spread = 56;
+  for (let k = 0; k < LOTS; k++) {
+    const t   = LOTS === 1 ? 0.5 : k / (LOTS - 1);
+    const ang  = -spread / 2 + spread * t;
+    const lift = -Math.cos((t - 0.5) * Math.PI) * 18;
+    const card = document.createElement('div');
+    card.className = 'lot';
+    card.style.transform = `rotate(${ang}deg) translateY(${lift}px)`;
+    card.addEventListener('click', () => pickLot(card));
+    fan.appendChild(card);
+  }
+}
+
+let lotBusy = false;
+
+function pickLot(card) {
+  if (lotBusy) return;
+  lotBusy = true;
+  const i = rand();
+  [...fan.children].forEach(c => { if (c !== card) c.classList.add('dim'); });
+  card.classList.add('picked');
+  card.style.transform = 'translateY(-96px) scale(1.12)';
+  setTimeout(() => { reveal(i); }, 620);
+}
+
+/* =====================================================================
+   MYSTERY BOX
+   ===================================================================== */
+const giftbox = document.getElementById('giftbox');
+let boxBusy = false;
+
+function openBox() {
+  if (boxBusy) return;
+  boxBusy = true;
+  giftbox.classList.add('shake');
+  setTimeout(() => {
+    giftbox.classList.remove('shake');
+    giftbox.classList.add('open');
+    setTimeout(() => { reveal(rand()); }, 620);
+  }, 560);
+}
+
+giftbox.addEventListener('click', openBox);
+
+/* =====================================================================
+   INIT — restore last method from localStorage
+   ===================================================================== */
+let startMethod = 'wheel';
+try {
+  const saved = localStorage.getItem('gh_me_method');
+  if (saved && widgets[saved]) startMethod = saved;
+} catch (e) { /* */ }
+setMethod(startMethod);
+</script>
+</body>
+</html>
