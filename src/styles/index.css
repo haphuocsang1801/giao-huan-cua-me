@@ -132,7 +132,8 @@ body {
   font-style: italic;
   font-weight: 800;
   font-size: clamp(44px, 9.5vw, 76px);
-  line-height: .95;
+  line-height: 1;
+  padding-bottom: 0.12em;
   background: linear-gradient(180deg, #e08bb1 0%, #c75f8f 70%, #b14e80 100%);
   -webkit-background-clip: text;
   background-clip: text;
