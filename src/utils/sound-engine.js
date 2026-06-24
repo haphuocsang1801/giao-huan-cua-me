@@ -54,14 +54,14 @@ export async function playWheelSpin() {
 
     const gain = ctx.createGain()
     gain.gain.setValueAtTime(0.001, now)
-    gain.gain.linearRampToValueAtTime(0.85, now + 0.15)    // quick attack
-    gain.gain.setValueAtTime(0.85, now + 13.5)             // hold — anchor for ramp below
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 14.95) // fade out as wheel stops
+    gain.gain.linearRampToValueAtTime(0.85, now + 0.15)  // quick attack
+    gain.gain.setValueAtTime(0.85, now + 3.8)            // hold — anchor for ramp below
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 5.0) // fade out as wheel stops
 
     source.connect(gain)
     gain.connect(ctx.destination)
     source.start(now)
-    source.stop(now + 15.1)
+    source.stop(now + 5.1)
   } catch {}
 }
 
