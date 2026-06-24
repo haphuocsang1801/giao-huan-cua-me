@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { TEACHINGS } from '../data/teachings'
+import { playReveal } from '../utils/sound-engine'
 
 const N = TEACHINGS.length
 const BURST_COLORS = ['#f7cfe0', '#fbe3c0', '#cbe3a8', '#ffffff', '#f3d6e6', '#bfe0e6']
@@ -34,6 +35,7 @@ export default function ResultModal({ index, onClose, onAgain }) {
   const burstRef = useRef(null)
 
   useEffect(() => { fireBurst(burstRef.current) }, [index])
+  useEffect(() => { playReveal() }, [])
 
   return (
     <div

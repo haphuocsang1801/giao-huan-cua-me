@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { TEACHINGS } from '../data/teachings'
+import { playWheelSpin, preloadWheelSound } from '../utils/sound-engine'
 
 const N = TEACHINGS.length
 const SEG = 360 / N
@@ -41,10 +42,15 @@ export default function WheelWidget({ active, onReveal, closeKey, triggerKey }) 
     return () => window.removeEventListener('resize', layoutWheel)
   }, [layoutWheel])
 
+  useEffect(() => {
+    if (active) preloadWheelSound()
+  }, [active])
+
   const doSpin = useCallback(() => {
     if (spinningRef.current) return
     spinningRef.current = true
     setSpinning(true)
+    playWheelSpin()
 
     const target = Math.floor(Math.random() * N)
     const mid = target * SEG + SEG / 2
@@ -53,7 +59,7 @@ export default function WheelWidget({ active, onReveal, closeKey, triggerKey }) 
     const currentMod = ((rotationRef.current % 360) + 360) % 360
     let delta = desiredMod - currentMod
     if (delta < 0) delta += 360
-    delta += 360 * 6
+    delta += 360 * 18
     rotationRef.current += delta
 
     const wheel = wheelRef.current
@@ -69,7 +75,7 @@ export default function WheelWidget({ active, onReveal, closeKey, triggerKey }) 
       onReveal(target)
     }
     wheel.addEventListener('transitionend', finish)
-    setTimeout(finish, 5200)
+    setTimeout(finish, 16200)
   }, [onReveal])
 
   // Reset hub when modal closes

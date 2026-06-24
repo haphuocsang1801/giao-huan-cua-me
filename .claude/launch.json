@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "giaohuan-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "giaohuan", "run", "dev"],
+      "port": 5173,
+      "env": {
+        "PATH": "/Users/hasang/.nvm/versions/node/v20.18.1/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    }
+  ]
+}
