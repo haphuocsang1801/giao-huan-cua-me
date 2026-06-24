@@ -59,7 +59,7 @@ export default function WheelWidget({ active, onReveal, closeKey, triggerKey }) 
     const currentMod = ((rotationRef.current % 360) + 360) % 360
     let delta = desiredMod - currentMod
     if (delta < 0) delta += 360
-    delta += 360 * 7
+    delta += 360 * 10
     rotationRef.current += delta
 
     const wheel = wheelRef.current
@@ -75,7 +75,7 @@ export default function WheelWidget({ active, onReveal, closeKey, triggerKey }) 
       onReveal(target)
     }
     wheel.addEventListener('transitionend', finish)
-    setTimeout(finish, 6200)
+    setTimeout(finish, 8200)
   }, [onReveal])
 
   // Reset hub when modal closes
