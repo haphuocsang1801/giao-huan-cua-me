@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { TEACHINGS } from '../data/teachings'
-import { playWheelSpin, preloadWheelSound } from '../utils/sound-engine'
+import { playWheelSpin } from '../utils/sound-engine'
 
 const N = TEACHINGS.length
 const SEG = 360 / N
@@ -42,9 +42,6 @@ export default function WheelWidget({ active, onReveal, closeKey, triggerKey }) 
     return () => window.removeEventListener('resize', layoutWheel)
   }, [layoutWheel])
 
-  useEffect(() => {
-    if (active) preloadWheelSound()
-  }, [active])
 
   const doSpin = useCallback(() => {
     if (spinningRef.current) return

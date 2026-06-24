@@ -1,5 +1,4 @@
 let audioCtx = null
-let wheelSpinBuffer = null
 
 function getCtx() {
   if (typeof window === 'undefined') return null
@@ -12,20 +11,17 @@ function getCtx() {
   return audioCtx
 }
 
-async function loadWheelBuffer(ctx) {
-  if (wheelSpinBuffer) return wheelSpinBuffer
-  const res = await fetch('/sounds/wheel-spin.wav')
-  const ab = await res.arrayBuffer()
-  wheelSpinBuffer = await ctx.decodeAudioData(ab)
-  return wheelSpinBuffer
-}
-
-// Call when the wheel tab becomes active so the buffer is ready before first spin
-export async function preloadWheelSound() {
-  try {
-    const ctx = getCtx()
-    if (ctx) await loadWheelBuffer(ctx)
-  } catch {}
+function tickOsc(ctx, time, freq, vol) {
+  const osc = ctx.createOscillator()
+  const gain = ctx.createGain()
+  osc.type = 'triangle'
+  osc.frequency.value = freq
+  gain.gain.setValueAtTime(vol, time)
+  gain.gain.exponentialRampToValueAtTime(0.001, time + 0.06)
+  osc.connect(gain)
+  gain.connect(ctx.destination)
+  osc.start(time)
+  osc.stop(time + 0.08)
 }
 
 function bellOsc(ctx, time, freq, vol, decay) {
@@ -41,28 +37,57 @@ function bellOsc(ctx, time, freq, vol, decay) {
   osc.stop(time + decay + 0.05)
 }
 
-// Play wheel-spin WAV: playbackRate decelerates 2×→0.1× to match the visual wheel slowing down
-export async function playWheelSpin() {
+// Whoosh (filtered noise) blends into individual ticks as the wheel decelerates over 7s
+export function playWheelSpin() {
   try {
     const ctx = getCtx()
     if (!ctx) return
-    const buffer = await loadWheelBuffer(ctx)
     const now = ctx.currentTime + 0.01
 
-    const source = ctx.createBufferSource()
-    source.buffer = buffer
+    // === WHOOSH: band-pass noise sweeping high→low (fast phase, 0–2.5s) ===
+    const bufLen = Math.ceil(ctx.sampleRate * 2.6)
+    const noiseBuf = ctx.createBuffer(1, bufLen, ctx.sampleRate)
+    const noiseData = noiseBuf.getChannelData(0)
+    for (let i = 0; i < bufLen; i++) noiseData[i] = Math.random() * 2 - 1
 
-    const gain = ctx.createGain()
-    gain.gain.setValueAtTime(0.001, now)
-    gain.gain.linearRampToValueAtTime(0.85, now + 0.15)  // quick attack
-    gain.gain.setValueAtTime(0.85, now + 5.8)            // hold — anchor for ramp below
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 7.0) // fade out as wheel stops
+    const noise = ctx.createBufferSource()
+    noise.buffer = noiseBuf
 
-    source.connect(gain)
-    gain.connect(ctx.destination)
-    // Start from 4s into the file (middle section) to skip the initial fast phase
-    source.start(now, 4)
-    source.stop(now + 7.1)
+    const bpf = ctx.createBiquadFilter()
+    bpf.type = 'bandpass'
+    bpf.frequency.setValueAtTime(900, now)
+    bpf.frequency.exponentialRampToValueAtTime(180, now + 2.4)
+    bpf.Q.value = 1.5
+
+    const noiseGain = ctx.createGain()
+    noiseGain.gain.setValueAtTime(0.001, now)
+    noiseGain.gain.linearRampToValueAtTime(0.18, now + 0.12)
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 2.5)
+
+    noise.connect(bpf)
+    bpf.connect(noiseGain)
+    noiseGain.connect(ctx.destination)
+    noise.start(now)
+    noise.stop(now + 2.6)
+
+    // === TICKS: deceleration clicks from 1.4s → 6.8s ===
+    const times = []
+    let t = 1.4
+    let dt = 0.10
+
+    while (t < 6.8) {
+      times.push(t)
+      const p = (t - 1.4) / 5.4
+      dt = 0.10 + 0.70 * Math.pow(p, 2.0)
+      t += dt
+    }
+
+    times.forEach((t) => {
+      const p = (t - 1.4) / 5.4
+      const freq = 650 + Math.random() * 100 - p * 100
+      const vol = 0.08 + p * 0.06
+      tickOsc(ctx, now + t, Math.max(450, freq), Math.min(0.14, vol))
+    })
   } catch {}
 }
 
